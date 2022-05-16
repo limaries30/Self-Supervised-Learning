@@ -23,7 +23,7 @@ def config():
     config = {
         'arch':'resnet50',
         'dataset':'CIFAR10',
-        'num_epochs': 1000,
+        'num_epochs': 500,
         'feature_dim': 128,
         'moco-momentum':0.5,
         'moco-temp':0.07,
@@ -114,22 +114,6 @@ def main(config):
                 val_acc_1 = val_acc_1 / val_length
                 val_acc_5 = val_acc_5 / val_length
                 print(f'val_loss:{val_loss},val_acc_1:{val_acc_1},val_acc_5:{val_acc_5}')
-
-            #epoch_avg_acc1 = epoch_avg_acc1/episode_length
-            # if epoch_acc1_best  < epoch_avg_acc1  :
-            #     epoch_acc1_best = epoch_avg_acc1
-            #     save_checkpoint(
-            #         {
-            #             'epoch':epoch,
-            #             'arch':config['arch'],
-            #             'state_dict':moco.state_dict(),
-            #             'optimizer':optimizer.state_dict()
-            #         },
-            #         filename=f'model/{epoch}_{int(epoch_acc1_best)}.pth.tar'
-            #     )
-
-
-
 
 
 
