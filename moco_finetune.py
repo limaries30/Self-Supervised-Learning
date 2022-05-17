@@ -1,7 +1,7 @@
 import argparse
 import torch
 import torchvision.models as models
-from model import MOCO
+from moco_model import MOCO
 from sacred import Experiment
 from sacred.observers import MongoObserver
 from dataloader import create_dataloader,train_transform

@@ -21,11 +21,7 @@ class MOCO(nn.Module):
         self.register_buffer('queue',torch.randn(feature_dim,queue_size))
         self.queue = nn.functional.normalize(self.queue,dim=0)
         self.register_buffer('queue_ptr',torch.zeros(1,dtype=torch.long))
-
-
         self.device =  device
-
-
 
     def momentum_update(self):
 
