@@ -6,7 +6,7 @@ from tqdm import tqdm
 import torchvision.models as models
 import torch
 import torch.nn as nn
-from utils import accuracy
+from utils import accuracy,save_checkpoint
 
 
 
@@ -68,16 +68,16 @@ def main(config):
                  acc1,acc5 = accuracy(output,target,topk=(1,5))
                  epoch_avg_acc1 += acc1
                  tepoch.set_postfix(epoch = epoch,loss=loss.item(),acc1=acc1.item(),acc5=acc5.item())
-            #
-            # epoch_avg_acc1 = epoch_avg_acc1/episode_length
-            # if epoch_acc1_best  < epoch_avg_acc1  :
-            #     epoch_acc1_best = epoch_avg_acc1
-            #     save_checkpoint(
-            #         {
-            #             'epoch':epoch,
-            #             'arch':config['arch'],
-            #             'state_dict':moco.state_dict(),
-            #             'optimizer':optimizer.state_dict()
-            #         },
-            #         filename=f'model/{epoch}_{int(epoch_acc1_best)}.pth.tar'
-            #     )
+
+            epoch_avg_acc1 = epoch_avg_acc1/episode_length
+            if epoch_acc1_best  < epoch_avg_acc1  :
+                epoch_acc1_best = epoch_avg_acc1
+                save_checkpoint(
+                    {
+                        'epoch':epoch,
+                        'arch':config['arch'],
+                        'state_dict':simclr.state_dict(),
+                        'optimizer':optimizer.state_dict()
+                    },
+                    filename=f'model/simclr_{epoch}_{int(epoch_acc1_best)}.pth.tar'
+                )
