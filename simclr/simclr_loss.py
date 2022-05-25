@@ -3,6 +3,8 @@ motivated from https://github.com/sthalles/SimCLR/blob/master/simclr.py
 '''
 import torch
 import torch.nn as nn
+
+
 class INFO_NCE_LOSS(nn.Module):
     def __init__(self,device,temperature):
         super(INFO_NCE_LOSS,self).__init__()
